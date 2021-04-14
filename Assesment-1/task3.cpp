@@ -43,33 +43,34 @@ int main()
     Node *curr = head, *prevCurr = NULL;
     while (curr != NULL)
     {
-        if (curr->val == median)
+        if (curr->val != median)
         {
-            Node *middle = head, *prevMiddle = NULL;
-            for (int i = 0; i < floor(size / 2); i++)
-            {
-                prevMiddle = middle;
-                middle = middle->next;
-            }
-
-            if (prevCurr != NULL)
-                prevCurr->next = middle;
-            else
-                head = middle;
-
-            if (prevMiddle != NULL)
-                prevMiddle->next = curr;
-            else
-                head = curr;
-
-            struct Node *temp = middle->next;
-            middle->next = curr->next;
-            curr->next = temp;
-
-            break;
+            prevCurr = curr;
+            curr = curr->next;
+            continue;
         }
-        prevCurr = curr;
-        curr = curr->next;
+        Node *middle = head, *prevMiddle = NULL;
+        for (int i = 0; i < floor(size / 2); i++)
+        {
+            prevMiddle = middle;
+            middle = middle->next;
+        }
+
+        if (prevCurr != NULL)
+            prevCurr->next = middle;
+        else
+            head = middle;
+
+        if (prevMiddle != NULL)
+            prevMiddle->next = curr;
+        else
+            head = curr;
+
+        Node *temp = middle->next;
+        middle->next = curr->next;
+        curr->next = temp;
+
+        break;
     }
 
     Node *trav = head;

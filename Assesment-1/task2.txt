@@ -1,22 +1,22 @@
-(		                (
-((		                ((
-(A	                    A	                ((
-(A-	                    A	                ((-
-(A-B	                AB	                ((-
-(A-B)	                AB-	                (
-(A-B)*	                AB-	                (*
-(A-B)*X	                AB-X	            (*
-(A-B)*X)	            AB-X*	            
-(A-B)*X)*	            AB-X*	            *
-(A-B)*X)*	            AB-X*	            *(
-(A-B)*X)*	            AB-X*C	            *(
-(A-B)*X)*(	            AB-X*C	            *(*
-(A-B)*X)*(C	            AB-X*C	            *(*(
-(A-B)*X)*(C*	        AB-X*CD	            *(*(
-(A-B)*X)*(C*(	        AB-X*CD	            *(*(+
-(A-B)*X)*(C*(D	        AB-X*CDE	        *(*(+
-(A-B)*X)*(C*(D+	        AB-X*CDE+	        *(*
-(A-B)*X)*(C*(D+E	    AB-X*CDE+*	        *(/
-(A-B)*X)*(C*(D+E)	    AB-X*CDE+*F	        *(/
-(A-B)*X)*(C*(D+E)/	    AB-X*CDE+*F/	    *
-(A-B)*X)*(C*(D+E)/F	    AB-X*CDE+*F/*	
+(		                                    (
+((		                                    ((
+((A	                    A	                ((
+((A-	                A	                ((-
+((A-B	                AB	                ((-
+((A-B)	                AB-	                (
+((A-B)*	                AB-	                (*
+((A-B)*X	            AB-X	            (*
+((A-B)*X)	            AB-X*	            
+((A-B)*X)*	            AB-X*	            *
+((A-B)*X)*	            AB-X*	            *(
+((A-B)*X)*	            AB-X*C	            *(
+((A-B)*X)*(	            AB-X*C	            *(*
+((A-B)*X)*(C	        AB-X*C	            *(*(
+((A-B)*X)*(C*	        AB-X*CD	            *(*(
+((A-B)*X)*(C*(	        AB-X*CD	            *(*(+
+((A-B)*X)*(C*(D	        AB-X*CDE	        *(*(+
+((A-B)*X)*(C*(D+	    AB-X*CDE+	        *(*
+((A-B)*X)*(C*(D+E	    AB-X*CDE+*	        *(/
+((A-B)*X)*(C*(D+E)	    AB-X*CDE+*F	        *(/
+((A-B)*X)*(C*(D+E)/	    AB-X*CDE+*F/	    *
+((A-B)*X)*(C*(D+E)/F	AB-X*CDE+*F/*	
