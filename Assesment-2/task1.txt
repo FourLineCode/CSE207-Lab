@@ -1,0 +1,10 @@
+For search operation on sorted and unsorted list arrays are better than linked list.
+
+Array supports Random Access, which means elements can be accessed directly using their index.
+Hence, accessing elements in an array is fast with a constant time complexity of O(1). Therefore,
+searching alogorithms such as binary search can be used for fast searching.
+
+Linked List supports Sequential Access, which means to access any element/node in a linked list,
+we have to sequentially traverse the complete linked list, upto that element.
+To access nth element of a linked list, time complexity is O(n). So, searching in a is slower
+than arrays in comparison.

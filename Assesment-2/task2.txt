@@ -1,0 +1,15 @@
+Pseudocode:
+
+function sqareRoot(num, ans, tol):
+	if (|ans * ans - num| <= tol):
+		return ans
+	else:
+		ans = (ans * ans + num) / (2 * ans)
+		return squareRoot(num, ans, tol)
+	end if
+end squareRoot
+
+Test:
+
+case #1: 2.282
+case #2: 2.335
