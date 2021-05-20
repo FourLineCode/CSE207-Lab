@@ -14,7 +14,7 @@ Associate Professor
 Department of Computer Science & Engineering
 East West University
 
-Version: 1.1
+Version: 1.2
 License: MIT
 Date: 19.05.2021
 
@@ -211,10 +211,11 @@ void remove_element(int key)
 		i = (i + 1) % MAX_SIZE;
 		if (i == index)
 		{
-			printf("\nKey does not exist\n");
 			break;
 		}
 	}
+
+	printf("\nKey does not exist\n");
 }
 
 // Display all the elements of hashtable
@@ -231,6 +232,7 @@ void display()
 	}
 }
 
+// Return current size of hashtable
 int current_size()
 {
 	return size;
