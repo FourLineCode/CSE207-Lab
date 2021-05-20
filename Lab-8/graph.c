@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define MAX 100
 int size;
@@ -8,8 +9,8 @@ void insert_vertex(int arr[][MAX]);
 void remove_vertex(int arr[][MAX], int);
 void insert_edge(int arr[][MAX], int, int);
 void remove_edge(int arr[][MAX], int, int);
-void bft(int arr[][MAX]);
-void dft(int arr[][MAX]);
+void bft(int arr[][MAX], int, int *);
+void dft(int arr[][MAX], int, int *);
 void display_matrix(int arr[][MAX]);
 
 int main()
@@ -85,12 +86,24 @@ int main()
 		}
 		case '6':
 		{
-			bft(adj);
+			int start;
+			printf("Enter starting vertex for BFT: ");
+			scanf("%d", &start);
+			int *visited = (int *)calloc(size, sizeof(int));
+			printf("BFT: ");
+			bft(adj, start, visited);
+			printf("\n");
 			break;
 		}
 		case '7':
 		{
-			dft(adj);
+			int start;
+			printf("Enter starting vertex for DFT: ");
+			scanf("%d", &start);
+			int *visited = (int *)calloc(size, sizeof(int));
+			printf("DFT: ");
+			dft(adj, start, visited);
+			printf("\n");
 			break;
 		}
 		case '8':
@@ -111,8 +124,12 @@ int main()
 void init_matrix(int arr[][MAX])
 {
 	for (int i = 0; i < MAX; i++)
+	{
 		for (int j = 0; j < MAX; j++)
+		{
 			arr[i][j] = 0;
+		}
+	}
 }
 
 void display_matrix(int arr[][MAX])
@@ -208,12 +225,48 @@ void remove_edge(int arr[][MAX], int src, int dest)
 	arr[dest][src] = 0;
 }
 
-void bft(int arr[][MAX])
+void bft(int arr[][MAX], int vertex, int *visited)
 {
-	printf("BFT\n");
+	if (!visited[vertex])
+	{
+		printf("%d ", vertex);
+		visited[vertex] = 1;
+	}
+
+	int *edges = (int *)calloc(size, sizeof(int));
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[vertex][i] == 1 && !visited[i])
+		{
+			if (!visited[i])
+			{
+				printf("%d ", i);
+				visited[i] = 1;
+				edges[i] = 1;
+			}
+		}
+	}
+
+	for (int i = 0; i < size; i++)
+	{
+		if (edges[i])
+		{
+			bft(arr, i, visited);
+		}
+	}
 }
 
-void dft(int arr[][MAX])
+void dft(int arr[][MAX], int vertex, int *visited)
 {
-	printf("DFT\n");
+	printf("%d ", vertex);
+
+	visited[vertex] = 1;
+
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[vertex][i] == 1 && !visited[i])
+		{
+			dft(arr, i, visited);
+		}
+	}
 }
