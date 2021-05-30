@@ -56,7 +56,7 @@ int current_size();
 void clear_screen();
 
 // ====== MAIN ======
-void main()
+int main()
 {
 	array = (HashtableItem *)malloc(MAX_SIZE * sizeof(HashtableItem));
 	init_array();
