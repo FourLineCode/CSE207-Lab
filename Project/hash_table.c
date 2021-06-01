@@ -14,9 +14,9 @@ Associate Professor
 Department of Computer Science & Engineering
 East West University
 
-Version: 1.2
+Version: 1.4
 License: MIT
-Date: 19.05.2021
+Date: 02.06.2021
 
 */
 
@@ -49,8 +49,11 @@ int size = 0;
 // Functions pointers
 void init_array();
 void insert(int, int);
+void search_key(int);
 void remove_element(int);
+void clear_hashtable();
 void display();
+void list_keys();
 int hash(int);
 int current_size();
 void clear_screen();
@@ -72,9 +75,11 @@ int main()
 		printf("1. Insert into Hashtable\n");
 		printf("2. Search item in Hashtable\n");
 		printf("3. Remove item from Hashtable\n");
-		printf("4. Check size of Hashtable\n");
-		printf("5. Display Hashtable\n");
-		printf("6. Exit\n");
+		printf("4. Clear Hashtable\n");
+		printf("5. List keys in Hashtable\n");
+		printf("6. Check size of Hashtable\n");
+		printf("7. Display Hashtable\n");
+		printf("8. Exit\n");
 
 		printf("\nEnter choice > ");
 		int choice;
@@ -93,7 +98,10 @@ int main()
 		}
 		case 2:
 		{
-			printf("Search\n");
+			int key;
+			printf("Enter key to search: ");
+			scanf("%d", &key);
+			search_key(key);
 			break;
 		}
 		case 3:
@@ -107,15 +115,25 @@ int main()
 		}
 		case 4:
 		{
-			printf("Size of Hashtable is: %d\n", current_size());
+			clear_hashtable();
 			break;
 		}
 		case 5:
 		{
-			display();
+			list_keys();
 			break;
 		}
 		case 6:
+		{
+			printf("Size of Hashtable is: %d\n", current_size());
+			break;
+		}
+		case 7:
+		{
+			display();
+			break;
+		}
+		case 8:
 		{
 			running = 0;
 			printf("\nProgram exited!\n");
@@ -175,7 +193,7 @@ void insert(int key, int value)
 			return;
 		}
 
-		i = (i + 1) % MAX_SIZE;
+		i = hash(i + 1);
 		if (i == index)
 		{
 			printf("\nHash table is full!\n");
@@ -208,7 +226,41 @@ void remove_element(int key)
 			return;
 		}
 
-		i = (i + 1) % MAX_SIZE;
+		i = hash(i + 1);
+		if (i == index)
+		{
+			break;
+		}
+	}
+
+	printf("\nKey does not exist\n");
+}
+
+// Clears the hashtable
+void clear_hashtable()
+{
+	init_array();
+	size = 0;
+	printf("\nHashtable cleared\n");
+}
+
+// Search if a key exists in hashtable
+void search_key(int key)
+{
+	int index = hash(key);
+	int i = index;
+
+	// Probing through array until we reach an empty space where not even once an element had been present
+	while (array[i].flag != 0)
+	{
+		// Data key matches the given key
+		if (array[i].flag == 1 && array[i].data->key == key)
+		{
+			printf("\nKey (%d) has value (%d)\n", key, array[i].data->value);
+			return;
+		}
+
+		i = hash(i + 1);
 		if (i == index)
 		{
 			break;
@@ -228,8 +280,28 @@ void display()
 		if (current == NULL)
 			printf("\nArray[%d] has no elements\n", i);
 		else
-			printf("\nArray[%d] has elements: { key: %d, value: %d }\n", i, current->key, current->value);
+			printf("\nArray[%d] has an element: { key: %d, value: %d }\n", i, current->key, current->value);
 	}
+}
+
+// List all the keys in hashtable
+void list_keys()
+{
+	if (size <= 0)
+	{
+		printf("\nHashtable is empty\n");
+		return;
+	}
+
+	printf("\nKeys in Hashtable: ");
+	for (int i = 0; i < MAX_SIZE; i++)
+	{
+		if (array[i].flag == 1)
+		{
+			printf("%d ", array[i].data->key);
+		}
+	}
+	printf("\n");
 }
 
 // Return current size of hashtable
@@ -240,13 +312,17 @@ int current_size()
 
 // Define clear_screen method based on the current os (windows/linux)
 #ifdef _WIN32
+
 void clear_screen()
 {
 	system("cls");
 }
+
 #else
+
 void clear_screen()
 {
 	system("clear");
 }
+
 #endif
